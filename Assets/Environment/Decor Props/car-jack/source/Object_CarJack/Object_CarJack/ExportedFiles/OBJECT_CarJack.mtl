@@ -1,0 +1,17 @@
+# Blender MTL File: 'OBJECT_CarJack.blend'
+# Material Count: 1
+
+newmtl CarJack
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Bump /Users/fibonacci-design/Desktop/OBJECT CarJack/Object_CarJack/Textures/CarJack_Normal.png
+map_Kd /Users/fibonacci-design/Desktop/OBJECT CarJack/Object_CarJack/Textures/CarJack_BaseColor.png
+map_Ns /Users/fibonacci-design/Desktop/OBJECT CarJack/Object_CarJack/Textures/CarJack_Roughness.png
+map_d /Users/fibonacci-design/Desktop/OBJECT CarJack/Object_CarJack/Textures/CarJack_Alpha.png
+refl /Users/fibonacci-design/Desktop/OBJECT CarJack/Object_CarJack/Textures/CarJack_Metallic.png
