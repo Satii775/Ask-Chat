@@ -3,9 +3,79 @@ guid: fa1ce52d61df04b46a7995185d30119e
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ceramic
+    second: {fileID: 2100000, guid: 793033e569a43e844ae9741f530359e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Collector
+    second: {fileID: 2100000, guid: 76a31fe2867f12d4880a1c3430be3e2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Filter
+    second: {fileID: 2100000, guid: 87e5f5cdcceada147bd8a9064f8cb5d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal_Paint
+    second: {fileID: 2100000, guid: f4e74e51aeab4f047a175b12b90881f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall1
+    second: {fileID: 2100000, guid: 580a44eaae6dd034bad5503848d59b66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall2
+    second: {fileID: 2100000, guid: 3a1ba41597440894aa9191ca3b220def, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall3
+    second: {fileID: 2100000, guid: e420b1b5e83757640ba78348f0809bc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall4
+    second: {fileID: 2100000, guid: 9b60e90f1d3b3f94bbc1f851d1d1cfe1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic1
+    second: {fileID: 2100000, guid: 4c34c907974144040ab796f0ee318209, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Procladka
+    second: {fileID: 2100000, guid: 5e25d31143297e944ba68869d4e04db6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Remen
+    second: {fileID: 2100000, guid: 169b237af040a6642975d59af96e6d20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Trenie_C
+    second: {fileID: 2100000, guid: 0e76f17675d9b8f4c9685abfca8df47e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic2
+    second: {fileID: 2100000, guid: 61eba504098f64642929f8e3fa612820, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plastic3
+    second: {fileID: 2100000, guid: f3197e02b3f80c04689617996223b48e, type: 2}
   materials:
-    materialImportMode: 2
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
