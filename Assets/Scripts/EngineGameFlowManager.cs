@@ -74,6 +74,7 @@ public class EngineGameFlowManager : MonoBehaviour
 
         assemblyManager.SetBuildMode(mode);
         assemblyManager.ResetBuild();
+        assemblyManager.StartSession();
     }
 
     private bool AreAllSectionsComplete()
@@ -97,6 +98,9 @@ public class EngineGameFlowManager : MonoBehaviour
 
         buildCompleteHandled = true;
         sessionRunning = false;
+
+        if (assemblyManager != null)
+            assemblyManager.EndSession();
 
         if (assemblyManager.CurrentMode == EngineAssemblyManager.BuildMode.Practice)
         {

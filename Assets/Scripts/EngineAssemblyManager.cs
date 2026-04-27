@@ -39,12 +39,23 @@ public class EngineAssemblyManager : MonoBehaviour
     [Header("Locking")]
     public bool disableGrabForLockedParts = true;
 
+    [Header("Arrow Indicators (Practice Mode)")]
+    [Tooltip("Prefab with PartArrowIndicator on it. One instance is spawned per part.")]
+    public PartArrowIndicator arrowPrefab;
+
+    [Tooltip("Optional parent for spawned arrows. If null, the manager is used.")]
+    public Transform arrowsParent;
+
     private Dictionary<string, PartStep> stepLookup = new Dictionary<string, PartStep>();
     private Dictionary<string, string> partToSectionLookup = new Dictionary<string, string>();
+    private Dictionary<string, PartArrowIndicator> arrowLookup = new Dictionary<string, PartArrowIndicator>();
     private HashSet<string> installedPartIds = new HashSet<string>();
     private HashSet<string> unlockedSections = new HashSet<string>();
 
+    private bool sessionActive;
+
     public BuildMode CurrentMode => currentMode;
+    public bool SessionActive => sessionActive;
 
     private void Awake()
     {
@@ -59,6 +70,18 @@ public class EngineAssemblyManager : MonoBehaviour
     private void Update()
     {
         UpdateGhosts();
+        UpdateArrows();
+    }
+
+    public void StartSession()
+    {
+        sessionActive = true;
+    }
+
+    public void EndSession()
+    {
+        sessionActive = false;
+        HideAllArrows();
     }
 
     private void BuildLookups()
@@ -115,8 +138,29 @@ public class EngineAssemblyManager : MonoBehaviour
                     step.zone.partId = step.partId;
                     step.zone.Setup(this);
                 }
+
+                SpawnArrowFor(step);
             }
         }
+    }
+
+    private void SpawnArrowFor(PartStep step)
+    {
+        if (arrowPrefab == null)
+            return;
+
+        if (step.part == null)
+            return;
+
+        if (arrowLookup.ContainsKey(step.partId))
+            return;
+
+        Transform parent = arrowsParent != null ? arrowsParent : transform;
+        PartArrowIndicator arrow = Instantiate(arrowPrefab, parent);
+        arrow.name = "Arrow_" + step.partId;
+        arrow.SetTarget(step.part.transform);
+        arrow.SetVisible(false);
+        arrowLookup.Add(step.partId, arrow);
     }
 
     private void UpdateGhosts()
@@ -142,10 +186,43 @@ public class EngineAssemblyManager : MonoBehaviour
         }
     }
 
+    private void UpdateArrows()
+    {
+        if (arrowLookup.Count == 0)
+            return;
+
+        bool active = sessionActive && currentMode == BuildMode.Practice;
+
+        foreach (BuildSection section in sections)
+        {
+            if (section == null || section.steps == null)
+                continue;
+
+            foreach (PartStep step in section.steps)
+            {
+                if (step == null || string.IsNullOrWhiteSpace(step.partId))
+                    continue;
+
+                if (!arrowLookup.TryGetValue(step.partId, out PartArrowIndicator arrow) || arrow == null)
+                    continue;
+
+                bool show =
+                    active &&
+                    step.part != null &&
+                    !IsInstalled(step.partId) &&
+                    IsUnlocked(step.partId) &&
+                    !step.part.IsHeld;
+
+                arrow.SetVisible(show);
+            }
+        }
+    }
+
     public void SetBuildMode(BuildMode newMode)
     {
         currentMode = newMode;
         HideAllGhosts();
+        HideAllArrows();
         RefreshAvailability();
     }
 
@@ -176,6 +253,7 @@ public class EngineAssemblyManager : MonoBehaviour
         }
 
         HideAllGhosts();
+        HideAllArrows();
         RefreshAvailability();
     }
 
@@ -191,6 +269,15 @@ public class EngineAssemblyManager : MonoBehaviour
                 if (step?.zone != null)
                     step.zone.SetGhostVisible(false);
             }
+        }
+    }
+
+    private void HideAllArrows()
+    {
+        foreach (KeyValuePair<string, PartArrowIndicator> kvp in arrowLookup)
+        {
+            if (kvp.Value != null)
+                kvp.Value.SetVisible(false);
         }
     }
 
@@ -227,6 +314,9 @@ public class EngineAssemblyManager : MonoBehaviour
         part.SnapTo(target);
         installedPartIds.Add(part.partId);
         zone.SetGhostVisible(false);
+
+        if (arrowLookup.TryGetValue(part.partId, out PartArrowIndicator arrow) && arrow != null)
+            arrow.SetVisible(false);
 
         Debug.Log(part.partId + " installed");
 
