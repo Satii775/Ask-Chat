@@ -11,7 +11,8 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] private GameObject tritanFilter;
     [SerializeField] private GameObject monoFilter;
 
-    [SerializeField] private AccessibleTMPText textComponent;
+    [SerializeField] private AccessibleTMPText textComponent_01;
+    [SerializeField] private AccessibleTMPText_Normal textComponent_02;
 
     private void OnEnable()
     {
@@ -97,10 +98,12 @@ public class MainMenuHandler : MonoBehaviour
         switch (selectedOption)
         {
             case "On":
-                textComponent.enabled = true;
+                textComponent_01.enabled = true;
+                textComponent_02.enabled = true;
                 break;
             case "Off":
-                textComponent.enabled = false;
+                textComponent_01.enabled = false;
+                textComponent_02.enabled = false;
                 break;
         }
     }
