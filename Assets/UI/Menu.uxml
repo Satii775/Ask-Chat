@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.74);">
+        <ui:Label text="Accessibility Menu&#10;" style="-unity-text-align: upper-center; font-size: 32px; -unity-font-style: normal; color: rgb(233, 233, 233); margin-bottom: 25px;" />
+        <ui:DropdownField label="Color-Blindness" choices="None,Protanomaly,Deuteranomaly,Tritanopia,Monochromacy" name="color-blindness-dropdown" focusable="true" style="color: rgb(255, 255, 255); height: 30px; margin-bottom: 25px; background-color: rgb(79, 79, 79);" />
+        <ui:DropdownField label="Accessible Text" choices="On,Off" name="accessible-text-dropdown" style="color: rgb(255, 255, 255); margin-bottom: 25px; background-color: rgb(80, 80, 80);" />
+    </ui:VisualElement>
+</ui:UXML>
