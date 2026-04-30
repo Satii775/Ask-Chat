@@ -46,6 +46,9 @@ public class EngineAssemblyManager : MonoBehaviour
     [Tooltip("Optional parent for spawned arrows. If null, the manager is used.")]
     public Transform arrowsParent;
 
+    [Header("Audio")]
+    public audioObject snapSound;
+
     private Dictionary<string, PartStep> stepLookup = new Dictionary<string, PartStep>();
     private Dictionary<string, string> partToSectionLookup = new Dictionary<string, string>();
     private Dictionary<string, PartArrowIndicator> arrowLookup = new Dictionary<string, PartArrowIndicator>();
@@ -312,6 +315,10 @@ public class EngineAssemblyManager : MonoBehaviour
         Transform target = zone.snapPoint != null ? zone.snapPoint : zone.transform;
 
         part.SnapTo(target);
+
+        if (snapSound != null && vocals.instance != null)
+            vocals.instance.say(snapSound);
+
         installedPartIds.Add(part.partId);
         zone.SetGhostVisible(false);
 
